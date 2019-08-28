@@ -17,6 +17,7 @@ public class Editor extends AppCompatActivity {
     private WheelPicker accidentals;
     private WheelPicker qualities;
     private Button add;
+    private Button save;
 
     private List<String> noteOptions;
     private List<String> accidentalOptions;
