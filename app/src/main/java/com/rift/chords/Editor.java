@@ -5,19 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import com.animoto.android.views.DraggableGridView;
 import com.aigestudio.wheelpicker.WheelPicker;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Editor extends AppCompatActivity {
 
-    private DraggableGridView dgv;
+    private DragGrid dgv;
     private WheelPicker notes;
     private WheelPicker accidentals;
     private WheelPicker qualities;
     private Button add;
-    private Button save;
+    private Button clear;
 
     private List<String> noteOptions;
     private List<String> accidentalOptions;
@@ -29,9 +28,6 @@ public class Editor extends AppCompatActivity {
         setContentView(R.layout.activity_editor);
 
         dgv = findViewById(R.id.dgv);
-        /*
-                Need to find out how to delete an element.
-         */
 
         add = findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
@@ -41,10 +37,18 @@ public class Editor extends AppCompatActivity {
             }
         });
 
+        clear = findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dgv.removeAllViews();
+            }
+        });
+
         createWheelPickers();
     }
 
-    public void createWheelPickers(){
+    private void createWheelPickers(){
         noteOptions = new ArrayList<>(7);
         noteOptions.add("A");
         noteOptions.add("B");
@@ -99,7 +103,7 @@ public class Editor extends AppCompatActivity {
         qualities.setData(qualityOptions);
     }
 
-    public String getChordName(){
+    private String getChordName(){
         int noteNum = notes.getCurrentItemPosition();
         int accidentalNum = accidentals.getCurrentItemPosition();
         int qualityNum = qualities.getCurrentItemPosition();
@@ -111,15 +115,16 @@ public class Editor extends AppCompatActivity {
         return note + accidental + quality;
     }
 
-    public void addChord(){
+    private void addChord(){
         String chord = getChordName();
+        int resId = getResources().getIdentifier(chord, "drawable", getPackageName());
+        ImageView img = new ImageView(this);
+        img.setImageResource(resId);
+        dgv.addView(img);
+    }
 
-        switch (chord){
-            case "A♯Minor":
-                ImageView img = new ImageView(this);
-                img.setImageResource(R.drawable.default_image);
-                dgv.addView(img);
-                break;
-        }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

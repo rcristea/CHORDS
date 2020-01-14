@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle" />
 
-    <com.animoto.android.views.DraggableGridView
+    <com.rift.chords.DragGrid
         android:id="@+id/dgv"
         android:layout_width="319dp"
         android:layout_height="306dp"
@@ -48,7 +48,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle">
-    </com.animoto.android.views.DraggableGridView>
+    </com.rift.chords.DragGrid>
+
 
     <View
         android:id="@+id/horizontalLineLarge"
@@ -99,12 +100,13 @@
         app:layout_constraintVertical_bias="0.0"></com.aigestudio.wheelpicker.WheelPicker>
 
     <Button
-        android:id="@+id/save"
+        android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/save"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/circle_black"
+        android:text="@string/clear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accidentals" />
 
@@ -112,8 +114,10 @@
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="96dp"
+        android:background="@drawable/circle_blue"
+        android:padding="12dp"
         android:text="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accidentals" />
